@@ -27,8 +27,8 @@ class Blockchain:
         parsed_url = urlparse(address)
         self.nodes.add(parsed_url.netloc)
 
-    def todo(vin):
-        response = requests.post('http://localhost:3000/part?vin=5YJSA1DG9DFP14705')
+    def getVinDecoded(self, vin):
+        response = requests.post('http://localhost:3000/part?vin='+vin)
         print('here in line 31', vin)
         if response.status_code == 200:
             length = response

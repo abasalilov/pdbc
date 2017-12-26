@@ -8,5 +8,5 @@ print(r)
 
 bc = Blockchain()
 hun = '5YJSA1DG9DFP14705'
-h = bc.getVinDecoded('5YJSA1DG9DFP14705')
+h = bc.getVinDecoded(hun)
 print('h', h)
