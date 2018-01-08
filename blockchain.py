@@ -3,7 +3,7 @@ import json
 from time import time
 from urllib.parse import urlparse
 from uuid import uuid4
-import asyncio  
+import asyncio
 import requests
 from flask import Flask, jsonify, request
 
@@ -32,7 +32,7 @@ class Blockchain:
         print('here in line 31', vin)
         if response.status_code == 200:
             length = response
-            print('length',response)
+            print('length', response)
 
         print(response)
         print(response.json())
@@ -94,7 +94,8 @@ class Blockchain:
                     max_length = length
                     new_chain = chain
 
-        # Replace our chain if we discovered a new, valid chain longer than ours
+        # Replace our chain if we discovered a new,
+        # valid chain longer than ours
         if new_chain:
             self.chain = new_chain
             return True
@@ -156,14 +157,16 @@ class Blockchain:
         :param block: Block
         """
 
-        # We must make sure that the Dictionary is Ordered, or we'll have inconsistent hashes
+        # We must make sure that the Dictionary is Ordered,
+        # or we'll have inconsistent hashes
         block_string = json.dumps(block, sort_keys=True).encode()
         return hashlib.sha256(block_string).hexdigest()
 
     def proof_of_work(self, last_proof):
         """
         Simple Proof of Work Algorithm:
-         - Find a number p' such that hash(pp') contains leading 4 zeroes, where p is the previous p'
+         - Find a number p' such that hash(pp') contains
+         leading 4 zeroes, where p is the previous p'
          - p is the previous proof, and p' is the new proof
         """
 
@@ -226,17 +229,6 @@ def mine():
     }
     return jsonify(response), 200
 
-@app.route('/part', methods=['POST'])
-def get_vinData ():
-    print('g')
-    data = request.get_json()
-    try:
-        requests.get('http://127.0.0.1:3000/part')
-    except requests.exceptions.RequestException as e:
-        print('exception caught', e)
-    print('here')
-    print(response)
-    return response, 200
 
 @app.route('/transactions/new', methods=['POST'])
 def new_transaction():
