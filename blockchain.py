@@ -27,17 +27,6 @@ class Blockchain:
         parsed_url = urlparse(address)
         self.nodes.add(parsed_url.netloc)
 
-    def getVinDecoded(self, vin):
-        response = requests.post('http://localhost:3000/part?vin='+vin)
-        print('here in line 31', vin)
-        if response.status_code == 200:
-            length = response
-            print('length', response)
-
-        print(response)
-        print(response.json())
-        return response.json()
-
     def valid_chain(self, chain):
         """
         Determine if a given blockchain is valid
