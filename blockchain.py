@@ -72,7 +72,7 @@ class Blockchain:
 
         # Grab and verify the chains from all the nodes in our network
         for node in neighbours:
-            response = requests.get(f'http://{node}/chain')
+            response = requests.get(http://{node}/chain)
 
             if response.status_code == 200:
                 length = response.json()['length']
@@ -175,7 +175,7 @@ class Blockchain:
         :return: True if correct, False if not.
         """
 
-        guess = f'{last_proof}{proof}'.encode()
+        guess = {last_proof}{proof}.encode()
         guess_hash = hashlib.sha256(guess).hexdigest()
         return guess_hash[:4] == "0000"
 
